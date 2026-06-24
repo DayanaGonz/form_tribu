@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BCM Group | RUT/TRIBU Form</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="client-page">
+    <main class="client-shell">
+      <header class="client-hero">
+        <div>
+          <h1>BCM</h1>
+          <div class="brand-tricolor" aria-hidden="true"><span></span><span></span><span></span></div>
+          <p class="brand-signature">By Dayana González</p>
+        </div>
+        <div class="client-hero-actions">
+          <div class="language-toggle" aria-label="Language">
+            <button class="active" type="button" data-lang-switch="es">ES</button>
+            <button type="button" data-lang-switch="en">EN</button>
+          </div>
+          <span data-i18n="hero_badge">Formulario RUT/TRIBU-CR</span>
+        </div>
+      </header>
+
+      <section class="client-intro">
+        <h2 data-i18n="intro_title">Datos Hacienda (RUT)</h2>
+        <p data-i18n="intro_copy">Complete esta información para que BCM Group pueda preparar o revisar su trámite ante Hacienda. Los campos marcados son necesarios para el expediente.</p>
+        <p class="client-note-banner" data-i18n="representative_note">Si el trámite corresponde a una sociedad o entidad, complete la información con los datos del representante legal autorizado.</p>
+      </section>
+
+      <form id="clientRutForm" class="client-form">
+        <section class="client-card">
+          <h3 data-i18n="personal_title">Datos personales / representante legal</h3>
+          <div class="grid two">
+            <label class="span-two">
+              <span data-i18n="full_name">Nombre completo *</span>
+              <input name="nombre" required />
+            </label>
+            <label>
+              <span data-i18n="id_type">Tipo de identificación *</span>
+              <select name="tipo_identificacion" required>
+                <option value="" data-i18n="select_option">Seleccione</option>
+                <option value="cedula_fisica" data-i18n="id_cedula">Cédula física</option>
+                <option value="dimex">DIMEX</option>
+                <option value="nite">NITE</option>
+                <option value="passport" data-i18n="id_passport">Pasaporte</option>
+                <option value="cedula_juridica" data-i18n="id_cedula_juridica">Cédula jurídica</option>
+              </select>
+            </label>
+            <label>
+              <span data-i18n="id_number">Número de identificación *</span>
+              <input name="identificacion" required />
+            </label>
+            <label>
+              <span data-i18n="birth_date">Fecha de nacimiento *</span>
+              <input name="fecha_nacimiento" type="date" required />
+            </label>
+            <label>
+              <span data-i18n="id_expiration">Fecha vencimiento de identificación *</span>
+              <input name="fecha_vencimiento_cedula" type="date" required />
+            </label>
+            <label>
+              <span data-i18n="id_consecutive">Número de consecutivo</span>
+              <input name="consecutivo_cedula" inputmode="numeric" maxlength="9" data-i18n-placeholder="id_consecutive_placeholder" placeholder="9 dígitos del reverso de la cédula, si aplica" />
+            </label>
+            <label>
+              <span data-i18n="phone">Número de teléfono para notificaciones *</span>
+              <input name="telefono" inputmode="tel" required />
+            </label>
+            <label>
+              <span data-i18n="email_notifications">Correo electrónico para notificaciones *</span>
+              <input name="correo" type="email" required />
+            </label>
+            <label>
+              <span data-i18n="email_invoices">Correo recepción facturas electrónicas *</span>
+              <input name="correo_recepcion_facturas" type="email" required />
+            </label>
+            <label>
+              <span data-i18n="nise">NISe, recibo de servicio eléctrico *</span>
+              <input name="nise" required />
+            </label>
+          </div>
+        </section>
+
+        <section class="client-card">
+          <h3 data-i18n="address_title">Domicilio fiscal</h3>
+          <div class="grid two">
+            <label>
+              <span data-i18n="province">Provincia *</span>
+              <input name="provincia" required />
+            </label>
+            <label>
+              <span data-i18n="canton">Cantón *</span>
+              <input name="canton" required />
+            </label>
+            <label>
+              <span data-i18n="district">Distrito *</span>
+              <input name="distrito" required />
+            </label>
+            <label class="span-two">
+              <span data-i18n="exact_address">Dirección exacta *</span>
+              <textarea name="domicilio" rows="3" required></textarea>
+            </label>
+          </div>
+        </section>
+
+        <section class="client-card">
+          <h3 data-i18n="activity_title">Actividad</h3>
+          <div class="grid two">
+            <label class="span-two">
+              <span data-i18n="activity">Actividad a desarrollar *</span>
+              <textarea name="actividad_descripcion" rows="4" required></textarea>
+            </label>
+          </div>
+        </section>
+
+        <section class="client-card">
+          <h3 data-i18n="tribu_title">Acceso a TRIBU-CR</h3>
+          <p class="client-note" data-i18n="tribu_note">Si ya existe un acceso vigente a TRIBU-CR, BCM Group necesitará acceso autorizado para ingresar y realizar el cambio de información. Por seguridad, no incluya contraseñas en este formulario; compártalas por el canal seguro indicado por BCM Group.</p>
+          <div class="grid two">
+            <label>
+              <span data-i18n="tribu_access">¿Tiene acceso vigente a TRIBU-CR? *</span>
+              <select name="acceso_tribu" required>
+                <option value="" data-i18n="select_option">Seleccione</option>
+                <option value="si" data-i18n="yes">Sí</option>
+                <option value="no" data-i18n="no">No</option>
+                <option value="no_se" data-i18n="not_sure">No estoy seguro/a</option>
+              </select>
+            </label>
+            <label>
+              <span data-i18n="access_method">Método de ingreso disponible</span>
+              <select name="metodo_acceso_tribu">
+                <option value="" data-i18n="select_option">Seleccione</option>
+                <option value="usuario_clave" data-i18n="access_user_pass">Usuario y contraseña</option>
+                <option value="firma_digital" data-i18n="access_signature">Firma digital</option>
+                <option value="autorizacion_tercero" data-i18n="access_authorization">Autorización a tercero</option>
+                <option value="otro" data-i18n="other">Otro</option>
+              </select>
+            </label>
+            <label class="span-two">
+              <span data-i18n="access_notes">Notas sobre acceso o credenciales</span>
+              <textarea name="notas_acceso_tribu" rows="3" data-i18n-placeholder="access_notes_placeholder" placeholder="Indique si ya tiene acceso y cómo coordinar la entrega segura. No escriba contraseñas aquí."></textarea>
+            </label>
+            <label class="span-two">
+              <span data-i18n="additional_notes">Observaciones adicionales</span>
+              <textarea name="observaciones_cliente" rows="4"></textarea>
+            </label>
+          </div>
+        </section>
+
+        <button class="primary client-submit" type="submit" data-i18n="submit_button">Enviar formulario</button>
+        <p id="clientRutStatus" class="status"></p>
+      </form>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
