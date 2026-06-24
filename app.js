@@ -1,5 +1,6 @@
 const clientForm = document.getElementById("clientRutForm");
 const clientStatus = document.getElementById("clientRutStatus");
+const successMessage = document.getElementById("successMessage");
 const langButtons = document.querySelectorAll("[data-lang-switch]");
 const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby7z-m1nnO-cSh4iO0TUsm10mSaJhKeZ2E4OisWL81cGqaOBVJtRqjPWmX6zRZsNMHh7g/exec";
 
@@ -159,7 +160,10 @@ clientForm.addEventListener("submit", async (event) => {
       body: JSON.stringify(payload),
     });
     clientForm.reset();
-    clientStatus.textContent = t("success_status");
+    clientStatus.textContent = "";
+    clientForm.classList.add("hidden");
+    successMessage.classList.remove("hidden");
+    successMessage.scrollIntoView({ behavior: "smooth", block: "center" });
   } catch (error) {
     clientStatus.textContent = error.message;
   }
