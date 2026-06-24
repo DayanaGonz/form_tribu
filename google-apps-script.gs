@@ -1,6 +1,7 @@
 const SHEET_NAME = "Respuestas RUT";
 const SPREADSHEET_ID = "";
 const DRIVE_PARENT_FOLDER_ID = "";
+const NOTIFICATION_EMAIL = "conta@grupo-bcm.com";
 
 const HEADERS = [
   "Fecha de envio",
@@ -71,6 +72,8 @@ function doPost(e) {
       folderUrl,
     ]);
 
+    sendNotificationEmail_(data, folderUrl);
+
     return ContentService
       .createTextOutput(JSON.stringify({ ok: true }))
       .setMimeType(ContentService.MimeType.JSON);
@@ -79,6 +82,31 @@ function doPost(e) {
       .createTextOutput(JSON.stringify({ ok: false, error: error.message }))
       .setMimeType(ContentService.MimeType.JSON);
   }
+}
+
+function sendNotificationEmail_(data, folderUrl) {
+  if (!NOTIFICATION_EMAIL) return;
+
+  const subject = `Nuevo formulario RUT/TRIBU - ${data.nombre || "Cliente"}`;
+  const body = [
+    "BCM recibió un nuevo formulario RUT/TRIBU.",
+    "",
+    `Nombre: ${data.nombre || ""}`,
+    `Identificación: ${data.identificacion || ""}`,
+    `Tipo de identificación: ${data.tipo_identificacion || ""}`,
+    `Teléfono: ${data.telefono || ""}`,
+    `Correo: ${data.correo || ""}`,
+    `Provincia: ${data.provincia || ""}`,
+    `Cantón: ${data.canton || ""}`,
+    `Distrito: ${data.distrito || ""}`,
+    `Acceso TRIBU vigente: ${data.acceso_tribu || ""}`,
+    `Método de acceso: ${data.metodo_acceso_tribu || ""}`,
+    folderUrl ? `Carpeta Drive: ${folderUrl}` : "",
+    "",
+    "Revisar la hoja Respuestas RUT para ver el expediente completo.",
+  ].filter(Boolean).join("\n");
+
+  MailApp.sendEmail(NOTIFICATION_EMAIL, subject, body);
 }
 
 function getResponseSheet_() {

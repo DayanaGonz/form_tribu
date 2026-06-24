@@ -49,7 +49,7 @@ const translations = {
     submit_button: "Enviar formulario",
     local_status: "Vista previa local: se descargó un archivo con la información del formulario.",
     sending_status: "Enviando información...",
-    success_status: "Información enviada. BCM Group revisará el expediente y le contactará si falta algún dato.",
+    success_status: "Formulario enviado.",
     error_status: "No se pudo enviar el formulario.",
   },
   en: {
@@ -97,7 +97,7 @@ const translations = {
     submit_button: "Submit form",
     local_status: "Local preview: a file with the form information was downloaded.",
     sending_status: "Sending information...",
-    success_status: "Information submitted. BCM Group will review the file and contact you if anything is missing.",
+    success_status: "Form submitted.",
     error_status: "The form could not be submitted.",
   },
 };
