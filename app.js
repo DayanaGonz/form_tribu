@@ -1,7 +1,7 @@
 const clientForm = document.getElementById("clientRutForm");
 const clientStatus = document.getElementById("clientRutStatus");
 const langButtons = document.querySelectorAll("[data-lang-switch]");
-const GOOGLE_APPS_SCRIPT_URL = "";
+const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby7z-m1nnO-cSh4iO0TUsm10mSaJhKeZ2E4OisWL81cGqaOBVJtRqjPWmX6zRZsNMHh7g/exec";
 
 const translations = {
   es: {
@@ -160,13 +160,12 @@ clientForm.addEventListener("submit", async (event) => {
 
   clientStatus.textContent = t("sending_status");
   try {
-    const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+    await fetch(GOOGLE_APPS_SCRIPT_URL, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
       body: JSON.stringify(payload),
     });
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.error || t("error_status"));
     clientForm.reset();
     clientStatus.textContent = t("success_status");
   } catch (error) {
