@@ -144,17 +144,9 @@ clientForm.addEventListener("submit", async (event) => {
   const payload = collectClientPayload();
 
   if (!GOOGLE_APPS_SCRIPT_URL) {
-    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    const name = payload.data.nombre || "cliente";
-    link.href = url;
-    link.download = `${name.replace(/[^a-z0-9]+/gi, "_")}_Datos_Hacienda_RUT.json`;
-    link.click();
-    URL.revokeObjectURL(url);
     clientStatus.textContent = activeLang === "es"
-      ? "Modo prueba: se descargó un archivo con la información. Falta conectar Google Sheets antes de compartirlo con clientes."
-      : "Test mode: a file with the form information was downloaded. Google Sheets must be connected before sharing this with clients.";
+      ? "El formulario todavía no tiene conectada la URL de Google Sheets."
+      : "The Google Sheets URL has not been connected yet.";
     return;
   }
 

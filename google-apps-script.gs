@@ -1,4 +1,5 @@
 const SHEET_NAME = "Respuestas RUT";
+const SPREADSHEET_ID = "";
 const DRIVE_PARENT_FOLDER_ID = "";
 
 const HEADERS = [
@@ -81,7 +82,14 @@ function doPost(e) {
 }
 
 function getResponseSheet_() {
-  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  const spreadsheet = SPREADSHEET_ID
+    ? SpreadsheetApp.openById(SPREADSHEET_ID)
+    : SpreadsheetApp.getActiveSpreadsheet();
+
+  if (!spreadsheet) {
+    throw new Error("No se encontró una hoja activa. Pegue el ID de la Google Sheet en SPREADSHEET_ID.");
+  }
+
   let sheet = spreadsheet.getSheetByName(SHEET_NAME);
   if (!sheet) {
     sheet = spreadsheet.insertSheet(SHEET_NAME);
